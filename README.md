@@ -112,6 +112,6 @@ Buka URL yang ditampilkan (biasanya `http://localhost:5173`) di browser Anda.
 3. Klik tombol **"Salin Format .env"**.
 4. Buka file `.env` pada folder bot Telegram Anda (`g:\bottele\.env`):
    ```env
-   QRIS_BASE_PAYLOAD=00020101021126570011ID.DANA.WWW011893600915304267225902090426722590303UKE51440014ID.CO.QRIS.WWW0215ID10200329284720303UKE5204581353033605802ID5920WARUNG KEMIRI RAYA 16014Kota Palembang6105301156304D909
+   QRIS_BASE_PAYLOAD=00020101021126570011ID.DANA.WWW...6304XXXX
    ```
 5. Simpan file `.env` dan restart bot Telegram Anda. Setiap kali pembeli melakukan checkout, bot akan otomatis membuat QRIS Dinamis dengan nominal unik!

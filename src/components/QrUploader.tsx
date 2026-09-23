@@ -1,13 +1,11 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import jsQR from 'jsqr';
-import { Upload, Camera, FileText, Image as ImageIcon, Sparkles, AlertCircle, X } from 'lucide-react';
+import { Upload, Camera, FileText, Image as ImageIcon, AlertCircle, X } from 'lucide-react';
 
 interface QrUploaderProps {
   onPayloadDetected: (payload: string) => void;
   isLoading: boolean;
 }
-
-const SAMPLE_DANA_PAYLOAD = "00020101021126570011ID.DANA.WWW011893600915304267225902090426722590303UKE51440014ID.CO.QRIS.WWW0215ID10200329284720303UKE5204581353033605802ID5920WARUNG KEMIRI RAYA 16014Kota Palembang6105301156304D909";
 
 export const QrUploader: React.FC<QrUploaderProps> = ({ onPayloadDetected, isLoading }) => {
   const [activeTab, setActiveTab] = useState<'upload' | 'text'>('upload');
@@ -157,11 +155,6 @@ export const QrUploader: React.FC<QrUploaderProps> = ({ onPayloadDetected, isLoa
     onPayloadDetected(trimmed);
   };
 
-  const handleSampleClick = () => {
-    setTextInput(SAMPLE_DANA_PAYLOAD);
-    onPayloadDetected(SAMPLE_DANA_PAYLOAD);
-  };
-
   return (
     <div className="bg-slate-900/90 rounded-2xl border border-slate-800 p-5 sm:p-6 shadow-xl relative overflow-hidden">
       {/* Decorative Glow */}
@@ -193,16 +186,6 @@ export const QrUploader: React.FC<QrUploaderProps> = ({ onPayloadDetected, isLoa
             Tempel String / Teks
           </button>
         </div>
-
-        {/* Quick Sample Button */}
-        <button
-          type="button"
-          onClick={handleSampleClick}
-          className="text-xs text-dana-400 hover:text-dana-300 font-medium flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-dana-500/10 border border-dana-500/20 hover:bg-dana-500/20 transition"
-        >
-          <Sparkles className="w-3 h-3" />
-          <span>Contoh QRIS DANA</span>
-        </button>
       </div>
 
       {/* Error alert */}
@@ -292,7 +275,7 @@ export const QrUploader: React.FC<QrUploaderProps> = ({ onPayloadDetected, isLoa
               rows={4}
               value={textInput}
               onChange={(e) => setTextInput(e.target.value)}
-              placeholder="Contoh: 00020101021126570011ID.DANA.WWW011893600915..."
+              placeholder="Tempel string payload QRIS Anda di sini..."
               className="w-full bg-slate-950/80 border border-slate-700 rounded-xl p-3 text-xs font-mono text-slate-200 focus:outline-none focus:ring-2 focus:ring-dana-500/50 focus:border-dana-500"
             />
           </div>
