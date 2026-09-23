@@ -141,7 +141,7 @@ export function convertToStaticBasePayload(rawQris: string): string {
 }
 
 /**
- * Generator QRIS Dinamis dari Static Payload (sama persis dengan logic Python di bottele).
+ * Generator QRIS Dinamis dari Static Payload (standar EMVCo).
  */
 export function generateDynamicQris(baseQris: string, amount: number | string): string {
   let qris = baseQris.trim();

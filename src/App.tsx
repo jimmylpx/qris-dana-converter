@@ -55,7 +55,7 @@ export const App: React.FC = () => {
           </h1>
 
           <p className="text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 font-medium max-w-xl mx-auto">
-            Ekstrak string QRIS DANA Bisnis secara otomatis untuk kebutuhan variabel <code className="bg-white dark:bg-black px-1.5 py-0.5 border border-black dark:border-white font-mono font-bold">QRIS_BASE_PAYLOAD</code> pada bot Telegram Anda.
+            Ekstrak string QRIS DANA Bisnis secara otomatis untuk kebutuhan payload statis dan simulator dinamis.
           </p>
         </div>
 
@@ -99,9 +99,9 @@ export const App: React.FC = () => {
               <div className="w-10 h-10 bg-brutal-green text-black border-2 border-black dark:border-white shadow-brutal-sm flex items-center justify-center font-black">
                 <Zap className="w-5 h-5 stroke-[2.5]" />
               </div>
-              <h4 className="text-xs font-black uppercase text-black dark:text-white">Format Bot Telegram</h4>
+              <h4 className="text-xs font-black uppercase text-black dark:text-white">Standar EMVCo Murni</h4>
               <p className="text-xs text-neutral-600 dark:text-neutral-400 font-medium">
-                Keluaran disesuaikan langsung dengan konfigurasi <code className="font-bold">QRIS_BASE_PAYLOAD</code> pada sistem bot.
+                Payload dinormalisasi ke format statis murni tanpa nominal bawaan dan siap disisipkan nominal transaksi.
               </p>
             </div>
 
@@ -121,7 +121,7 @@ export const App: React.FC = () => {
       {/* Footer */}
       <footer className="border-t-2 border-black dark:border-white bg-white dark:bg-brutal-darkCard py-6 text-center text-xs font-bold uppercase text-neutral-600 dark:text-neutral-400 transition-colors">
         <p>
-          DANA QRIS to Static Payload Converter • Siap Dideploy ke <span className="underline decoration-2 text-black dark:text-white">Vercel</span>
+          DANA QRIS to Static & Dynamic Payload Converter • EMVCo Standard
         </p>
       </footer>
 

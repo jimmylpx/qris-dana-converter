@@ -107,10 +107,9 @@ export const PayloadResult: React.FC<PayloadResultProps> = ({ metadata, staticPa
           <div className="p-3 bg-neutral-100 dark:bg-neutral-900 border-2 border-black dark:border-white text-xs text-neutral-700 dark:text-neutral-300 flex items-start gap-2 shadow-brutal-sm dark:shadow-brutal-sm-dark">
             <Terminal className="w-4 h-4 text-dana-500 mt-0.5 flex-shrink-0" />
             <div>
-              <p className="text-black dark:text-white font-black uppercase text-[11px] mb-0.5">Penggunaan pada Bot Telegram:</p>
+              <p className="text-black dark:text-white font-black uppercase text-[11px] mb-0.5">Penggunaan Payload:</p>
               <p className="font-medium text-[11px]">
-                Masukkan nilai di atas ke file <code className="bg-white dark:bg-black px-1.5 py-0.5 border border-black dark:border-white font-bold font-mono">.env</code> pada variabel{' '}
-                <code className="bg-emerald-200 dark:bg-emerald-950 text-black dark:text-emerald-300 px-1.5 py-0.5 border border-black dark:border-white font-bold font-mono">QRIS_BASE_PAYLOAD</code>.
+                Gunakan string payload statis di atas untuk variabel konfigurasi sistem pembayaran atau file <code className="bg-white dark:bg-black px-1.5 py-0.5 border border-black dark:border-white font-bold font-mono">.env</code> Anda (<code className="bg-emerald-200 dark:bg-emerald-950 text-black dark:text-emerald-300 px-1.5 py-0.5 border border-black dark:border-white font-bold font-mono">QRIS_BASE_PAYLOAD</code>).
               </p>
             </div>
           </div>
