@@ -9,7 +9,7 @@ export interface EmvTag {
 export const TAG_NAMES: Record<string, string> = {
   '00': 'Payload Format Indicator',
   '01': 'Point of Initiation Method',
-  '26': 'Merchant Account (DANA Acquirer)',
+  '26': 'Merchant Account Information',
   '27': 'Merchant Account',
   '28': 'Merchant Account',
   '29': 'Merchant Account',

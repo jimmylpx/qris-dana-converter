@@ -79,7 +79,7 @@ export const QrUploader: React.FC<QrUploaderProps> = ({ onPayloadDetected, isLoa
         } else if (item.type === 'text/plain') {
           item.getAsString((text) => {
             const trimmed = text.trim();
-            if (trimmed.startsWith('000201') || trimmed.includes('ID.DANA.WWW')) {
+            if (trimmed.startsWith('000201')) {
               onPayloadDetected(trimmed);
             }
           });
@@ -164,7 +164,7 @@ export const QrUploader: React.FC<QrUploaderProps> = ({ onPayloadDetected, isLoa
             onClick={() => setActiveTab('upload')}
             className={`flex items-center gap-2 px-4 py-2 text-xs font-black uppercase transition-all ${
               activeTab === 'upload'
-                ? 'btn-brutal bg-dana-500 text-white'
+                ? 'btn-brutal bg-brand-500 text-white'
                 : 'text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white'
             }`}
           >
@@ -175,7 +175,7 @@ export const QrUploader: React.FC<QrUploaderProps> = ({ onPayloadDetected, isLoa
             onClick={() => setActiveTab('text')}
             className={`flex items-center gap-2 px-4 py-2 text-xs font-black uppercase transition-all ${
               activeTab === 'text'
-                ? 'btn-brutal bg-dana-500 text-white'
+                ? 'btn-brutal bg-brand-500 text-white'
                 : 'text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white'
             }`}
           >
@@ -217,7 +217,7 @@ export const QrUploader: React.FC<QrUploaderProps> = ({ onPayloadDetected, isLoa
             onClick={() => fileInputRef.current?.click()}
             className={`border-2 border-dashed border-black dark:border-white p-8 sm:p-10 text-center cursor-pointer transition-all flex flex-col items-center justify-center min-h-[220px] shadow-brutal-sm dark:shadow-brutal-sm-dark ${
               dragOver
-                ? 'bg-dana-100 dark:bg-dana-950/60'
+                ? 'bg-brand-100 dark:bg-brand-950/60'
                 : 'bg-neutral-50 dark:bg-neutral-900/60 hover:bg-neutral-100 dark:hover:bg-neutral-800/80'
             }`}
           >
@@ -233,12 +233,12 @@ export const QrUploader: React.FC<QrUploaderProps> = ({ onPayloadDetected, isLoa
               }}
             />
 
-            <div className="w-14 h-14 bg-dana-500 text-white border-2 border-black dark:border-white shadow-brutal-sm dark:shadow-brutal-sm-dark flex items-center justify-center mb-3">
+            <div className="w-14 h-14 bg-brand-500 text-white border-2 border-black dark:border-white shadow-brutal-sm dark:shadow-brutal-sm-dark flex items-center justify-center mb-3">
               <Upload className="w-6 h-6 stroke-[2.5]" />
             </div>
 
             <p className="font-black text-black dark:text-white text-sm sm:text-base mb-1 uppercase tracking-tight">
-              Drag & Drop gambar QRIS di sini atau <span className="underline decoration-2 text-dana-600 dark:text-dana-400">Pilih File</span>
+              Drag & Drop gambar QRIS di sini atau <span className="underline decoration-2 text-brand-600 dark:text-brand-400">Pilih File</span>
             </p>
             <p className="text-xs text-neutral-600 dark:text-neutral-400 max-w-sm mb-4 font-medium">
               Mendukung PNG, JPG, JPEG, WEBP. Bisa langsung tekan <kbd className="px-1.5 py-0.5 bg-black text-white dark:bg-white dark:text-black font-mono text-[10px] font-bold">Ctrl + V</kbd> untuk paste screenshot!
@@ -252,7 +252,7 @@ export const QrUploader: React.FC<QrUploaderProps> = ({ onPayloadDetected, isLoa
               }}
               className="btn-brutal bg-white dark:bg-black text-black dark:text-white px-4 py-2 text-xs flex items-center gap-1.5 uppercase"
             >
-              <Camera className="w-3.5 h-3.5 text-dana-500" />
+              <Camera className="w-3.5 h-3.5 text-brand-500" />
               Scan via Kamera
             </button>
           </div>
@@ -277,7 +277,7 @@ export const QrUploader: React.FC<QrUploaderProps> = ({ onPayloadDetected, isLoa
           <button
             type="submit"
             disabled={isLoading || !textInput.trim()}
-            className="btn-brutal w-full py-3 bg-dana-500 hover:bg-dana-400 text-white text-xs uppercase tracking-wider"
+            className="btn-brutal w-full py-3 bg-brand-500 hover:bg-brand-400 text-white text-xs uppercase tracking-wider"
           >
             {isLoading ? 'Memproses...' : 'Ekstraksi & Konversi Payload'}
           </button>
@@ -295,7 +295,7 @@ export const QrUploader: React.FC<QrUploaderProps> = ({ onPayloadDetected, isLoa
               <X className="w-5 h-5" />
             </button>
             <h3 className="font-black text-sm text-black dark:text-white mb-2 uppercase flex items-center gap-2">
-              <Camera className="w-4 h-4 text-dana-500" />
+              <Camera className="w-4 h-4 text-brand-500" />
               Scan QRIS via Kamera
             </h3>
             <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-4 font-medium">

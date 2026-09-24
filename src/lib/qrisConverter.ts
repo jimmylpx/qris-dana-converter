@@ -6,8 +6,8 @@ export interface QrisMetadata {
   merchantCity: string;
   postalCode: string;
   currency: string;
-  isDana: boolean;
-  danaAcquirerInfo: string;
+  acquirerName: string;
+  acquirerInfo: string;
   nationalMerchantId: string;
   pointOfInitiation: 'static' | 'dynamic' | 'unknown';
   amount?: string;
@@ -15,6 +15,25 @@ export interface QrisMetadata {
   calculatedCrc: string;
   isCrcValid: boolean;
   rawPayload: string;
+}
+
+/**
+ * Deteksi nama acquirer/penyedia dari tag merchant account information
+ */
+function detectAcquirer(raw: string, accountValue: string): string {
+  const combined = (raw + ' ' + accountValue).toUpperCase();
+  if (combined.includes('ID.DANA.WWW') || combined.includes('93600915')) return 'DANA';
+  if (combined.includes('ID.GOPAY') || combined.includes('GO-JEK') || combined.includes('93600914')) return 'GoPay';
+  if (combined.includes('ID.OVO') || combined.includes('93600912')) return 'OVO';
+  if (combined.includes('ID.SHOPEE') || combined.includes('93600918')) return 'ShopeePay';
+  if (combined.includes('ID.LINKAJA') || combined.includes('93600911')) return 'LinkAja';
+  if (combined.includes('BCA') || combined.includes('ID.CO.BCA')) return 'BCA';
+  if (combined.includes('MANDIRI')) return 'Mandiri';
+  if (combined.includes('BRI')) return 'BRI';
+  if (combined.includes('BNI')) return 'BNI';
+  if (combined.includes('NOBU')) return 'Nobu Bank';
+  if (combined.includes('CIMB')) return 'CIMB Niaga';
+  return 'QRIS Nasional';
 }
 
 /**
@@ -28,8 +47,8 @@ export function extractQrisMetadata(rawInput: string): QrisMetadata {
   let merchantCity = '-';
   let postalCode = '-';
   let currency = 'IDR (360)';
-  let isDana = false;
-  let danaAcquirerInfo = '-';
+  let acquirerName = 'QRIS Nasional';
+  let acquirerInfo = '-';
   let nationalMerchantId = '-';
   let pointOfInitiation: 'static' | 'dynamic' | 'unknown' = 'unknown';
   let amount: string | undefined = undefined;
@@ -39,15 +58,13 @@ export function extractQrisMetadata(rawInput: string): QrisMetadata {
     if (tag.id === '01') {
       if (tag.value === '11') pointOfInitiation = 'static';
       else if (tag.value === '12') pointOfInitiation = 'dynamic';
-    } else if (tag.id === '26') {
-      if (tag.value.includes('ID.DANA.WWW') || tag.value.includes('93600915')) {
-        isDana = true;
-      }
-      danaAcquirerInfo = tag.value;
+    } else if (parseInt(tag.id, 10) >= 26 && parseInt(tag.id, 10) <= 45) {
+      acquirerInfo = tag.value;
       if (tag.subTags) {
         const idSub = tag.subTags.find(s => s.id === '01' || s.id === '02');
-        if (idSub) danaAcquirerInfo = idSub.value;
+        if (idSub) acquirerInfo = idSub.value;
       }
+      acquirerName = detectAcquirer(raw, tag.value);
     } else if (tag.id === '51') {
       nationalMerchantId = tag.value;
       if (tag.subTags) {
@@ -69,11 +86,6 @@ export function extractQrisMetadata(rawInput: string): QrisMetadata {
     }
   }
 
-  // Backup check in raw text for DANA identifier
-  if (!isDana && (raw.includes('ID.DANA.WWW') || raw.includes('93600915'))) {
-    isDana = true;
-  }
-
   const isCrcValid = validateQrisCrc(raw);
   let calculatedCrc = '';
   const tag63Pos = raw.lastIndexOf('6304');
@@ -86,8 +98,8 @@ export function extractQrisMetadata(rawInput: string): QrisMetadata {
     merchantCity,
     postalCode,
     currency,
-    isDana,
-    danaAcquirerInfo,
+    acquirerName,
+    acquirerInfo,
     nationalMerchantId,
     pointOfInitiation,
     amount,
@@ -99,9 +111,9 @@ export function extractQrisMetadata(rawInput: string): QrisMetadata {
 }
 
 /**
- * Konversi QRIS apapun menjadi QRIS_BASE_PAYLOAD Statis Murni untuk DANA Bisnis.
+ * Konversi QRIS menjadi QRIS_BASE_PAYLOAD Statis Murni (standar EMVCo).
  * 1. Memastikan Tag 01 = '010211' (Statis)
- * 2. Menghapus Tag 54 (Transaction Amount) agar dapat disisipkan dinamis oleh bot
+ * 2. Menghapus Tag 54 (Transaction Amount) agar dapat disisipkan dinamis
  * 3. Menghitung ulang Checksum CRC-16 CCITT-FALSE
  */
 export function convertToStaticBasePayload(rawQris: string): string {
@@ -124,12 +136,10 @@ export function convertToStaticBasePayload(rawQris: string): string {
   }
 
   // 3. Hapus Tag 54 (Nominal) jika ada pada payload statis
-  // Cari posisi Tag 54 setelah tag 53 atau tag lain
   const tag54Regex = /54(\d{2})([0-9.]+)/;
   const match54 = qris.match(tag54Regex);
   if (match54) {
     const len = parseInt(match54[1], 10);
-    // Pastikan length valid dan potong pas sepanjang len
     const fullTag54 = '54' + match54[1] + match54[2].substring(0, len);
     qris = qris.replace(fullTag54, '');
   }
@@ -158,7 +168,6 @@ export function generateDynamicQris(baseQris: string, amount: number | string): 
   // 3. Format nominal angka (Tag 54)
   const numAmount = typeof amount === 'string' ? parseFloat(amount) : amount;
   if (isNaN(numAmount) || numAmount <= 0) {
-    // Jika amount tidak valid, kembalikan base dengan CRC
     qris += '6304';
     return qris + calculateCrc16(qris);
   }

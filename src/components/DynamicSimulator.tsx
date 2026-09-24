@@ -71,7 +71,7 @@ export const DynamicSimulator: React.FC<DynamicSimulatorProps> = ({ staticPayloa
             </span>
           </div>
           <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1 font-medium">
-            Uji konversi payload statis ke dinamis dengan nominal spesifik. Scan QR ini dengan aplikasi DANA untuk memastikan nominal muncul otomatis.
+            Uji konversi payload statis ke dinamis dengan nominal spesifik. Scan QR ini dengan aplikasi pembayaran (m-banking / e-wallet) untuk memastikan nominal muncul otomatis.
           </p>
         </div>
       </div>
@@ -81,7 +81,7 @@ export const DynamicSimulator: React.FC<DynamicSimulatorProps> = ({ staticPayloa
         <div className="lg:col-span-7 space-y-5">
           <div>
             <label className="block text-xs font-black uppercase text-black dark:text-white mb-2 flex items-center gap-1.5">
-              <DollarSign className="w-4 h-4 text-dana-500" />
+              <DollarSign className="w-4 h-4 text-brand-500" />
               Nominal Transaksi (Rupiah):
             </label>
             <div className="relative">
@@ -131,7 +131,7 @@ export const DynamicSimulator: React.FC<DynamicSimulatorProps> = ({ staticPayloa
               </span>
               <button
                 onClick={handleCopy}
-                className="text-[11px] font-black uppercase text-dana-600 dark:text-dana-400 hover:underline flex items-center gap-1"
+                className="text-[11px] font-black uppercase text-brand-600 dark:text-brand-400 hover:underline flex items-center gap-1"
               >
                 {copied ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
                 {copied ? 'Tersalin' : 'Salin Payload Dinamis'}
@@ -146,8 +146,8 @@ export const DynamicSimulator: React.FC<DynamicSimulatorProps> = ({ staticPayloa
         {/* Right Side: Rendered QR Code Preview Card */}
         <div className="lg:col-span-5 flex flex-col items-center">
           <div className="bg-white text-black p-4 border-[3px] border-black dark:border-white shadow-brutal dark:shadow-brutal-dark flex flex-col items-center max-w-[260px] w-full text-center">
-            <span className="text-[11px] font-black tracking-wider text-dana-600 uppercase mb-0.5">
-              QRIS DANA DINAMIS
+            <span className="text-[11px] font-black tracking-wider text-brand-600 uppercase mb-0.5">
+              QRIS DINAMIS
             </span>
             <span className="text-xs font-black text-black truncate max-w-[220px]">
               {merchantName}
@@ -162,7 +162,7 @@ export const DynamicSimulator: React.FC<DynamicSimulatorProps> = ({ staticPayloa
             </div>
 
             <span className="text-[10px] text-neutral-600 mt-2 font-bold flex items-center gap-1 uppercase">
-              <Smartphone className="w-3 h-3 text-black" /> Scan via DANA / GoPay / BCA
+              <Smartphone className="w-3 h-3 text-black" /> Scan via E-Wallet / M-Banking
             </span>
           </div>
 

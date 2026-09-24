@@ -47,15 +47,15 @@ export const App: React.FC = () => {
         {/* Hero Section */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-block px-3 py-1 bg-brutal-yellow text-black border-2 border-black dark:border-white shadow-brutal-sm text-xs font-black uppercase tracking-wider">
-            EMVCo QRIS Standar • DANA Bisnis
+            EMVCo QRIS Standar • Universal
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-black dark:text-white leading-tight">
-            Konversi QRIS DANA ke <span className="bg-dana-500 text-white px-2 py-0.5 border-2 border-black dark:border-white shadow-brutal-sm">Payload Statis</span>
+            Konversi QRIS ke <span className="bg-brand-500 text-white px-2 py-0.5 border-2 border-black dark:border-white shadow-brutal-sm">Payload Statis</span>
           </h1>
 
           <p className="text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 font-medium max-w-xl mx-auto">
-            Ekstrak string QRIS DANA Bisnis secara otomatis untuk kebutuhan payload statis dan simulator dinamis.
+            Ekstrak string QRIS secara otomatis untuk kebutuhan payload statis dan simulator dinamis.
           </p>
         </div>
 
@@ -86,12 +86,12 @@ export const App: React.FC = () => {
         {!metadata && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-4">
             <div className="card-brutal p-5 space-y-2">
-              <div className="w-10 h-10 bg-dana-500 text-white border-2 border-black dark:border-white shadow-brutal-sm flex items-center justify-center font-black">
+              <div className="w-10 h-10 bg-brand-500 text-white border-2 border-black dark:border-white shadow-brutal-sm flex items-center justify-center font-black">
                 <CheckCircle2 className="w-5 h-5 stroke-[2.5]" />
               </div>
               <h4 className="text-xs font-black uppercase text-black dark:text-white">Ekstraksi Akurat</h4>
               <p className="text-xs text-neutral-600 dark:text-neutral-400 font-medium">
-                Parsing standar EMVCo TLV untuk mengambil nama merchant DANA dan menghitung ulang CRC-16 dengan valid.
+                Parsing standar EMVCo TLV untuk mengambil nama merchant dan menghitung ulang CRC-16 dengan valid.
               </p>
             </div>
 
@@ -121,7 +121,7 @@ export const App: React.FC = () => {
       {/* Footer */}
       <footer className="border-t-2 border-black dark:border-white bg-white dark:bg-brutal-darkCard py-6 text-center text-xs font-bold uppercase text-neutral-600 dark:text-neutral-400 transition-colors">
         <p>
-          DANA QRIS to Static & Dynamic Payload Converter • EMVCo Standard
+          QRIS to Static & Dynamic Payload Converter • EMVCo Standard
         </p>
       </footer>
 

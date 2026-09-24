@@ -13,20 +13,20 @@ export const Header: React.FC<HeaderProps> = ({ onOpenGuide, onReset, hasData })
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Brand */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-dana-500 text-white font-black text-lg border-2 border-black dark:border-white shadow-brutal-sm dark:shadow-brutal-sm-dark flex items-center justify-center tracking-tighter">
+          <div className="w-10 h-10 bg-brand-500 text-white font-black text-lg border-2 border-black dark:border-white shadow-brutal-sm dark:shadow-brutal-sm-dark flex items-center justify-center tracking-tighter">
             QR
           </div>
           <div>
             <div className="flex items-center gap-2">
               <span className="font-extrabold text-base sm:text-lg tracking-tight text-black dark:text-white uppercase">
-                DANA QRIS <span className="text-dana-500 underline decoration-2">Converter</span>
+                QRIS <span className="text-brand-500 underline decoration-2">Converter</span>
               </span>
               <span className="text-[10px] font-black uppercase px-2 py-0.5 bg-brutal-yellow text-black border-2 border-black dark:border-white shadow-brutal-sm dark:shadow-brutal-sm-dark">
-                Bisnis Static
+                Universal Static
               </span>
             </div>
             <p className="text-xs text-neutral-600 dark:text-neutral-400 hidden sm:block font-medium">
-              Konversi QRIS DANA ke Payload Statis & Simulator Dinamis EMVCo
+              Konversi QRIS ke Payload Statis & Simulator Dinamis EMVCo
             </p>
           </div>
         </div>
@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenGuide, onReset, hasData })
             onClick={onOpenGuide}
             className="btn-brutal bg-white dark:bg-neutral-900 text-black dark:text-white px-3 py-1.5 text-xs flex items-center gap-1.5"
           >
-            <BookOpen className="w-3.5 h-3.5 text-dana-500" />
+            <BookOpen className="w-3.5 h-3.5 text-brand-500" />
             <span>Panduan</span>
           </button>
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Copy, Check, Store, MapPin, CheckCircle2, ChevronDown, ChevronUp, Layers, Terminal, AlertTriangle } from 'lucide-react';
+import { Copy, Check, Store, MapPin, CheckCircle2, ChevronDown, ChevronUp, Layers, Terminal } from 'lucide-react';
 import { QrisMetadata } from '../lib/qrisConverter';
 import { EmvTag, parseTlv } from '../lib/emvco';
 
@@ -34,7 +34,7 @@ export const PayloadResult: React.FC<PayloadResultProps> = ({ metadata, staticPa
       <div className="card-brutal p-5 sm:p-6">
         <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b-2 border-black dark:border-white">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-dana-500 text-white border-2 border-black dark:border-white shadow-brutal-sm dark:shadow-brutal-sm-dark flex items-center justify-center font-black">
+            <div className="w-12 h-12 bg-brand-500 text-white border-2 border-black dark:border-white shadow-brutal-sm dark:shadow-brutal-sm-dark flex items-center justify-center font-black">
               <Store className="w-6 h-6 stroke-[2.5]" />
             </div>
             <div>
@@ -42,19 +42,13 @@ export const PayloadResult: React.FC<PayloadResultProps> = ({ metadata, staticPa
                 <h3 className="font-black text-lg sm:text-xl text-black dark:text-white uppercase tracking-tight">
                   {metadata.merchantName}
                 </h3>
-                {metadata.isDana ? (
-                  <span className="text-[11px] font-black bg-dana-500 text-white border-2 border-black dark:border-white px-2 py-0.5 shadow-brutal-sm uppercase flex items-center gap-1">
-                    <CheckCircle2 className="w-3 h-3" /> DANA Bisnis
-                  </span>
-                ) : (
-                  <span className="text-[11px] font-black bg-brutal-yellow text-black border-2 border-black dark:border-white px-2 py-0.5 shadow-brutal-sm uppercase flex items-center gap-1">
-                    <AlertTriangle className="w-3 h-3" /> QRIS Standar
-                  </span>
-                )}
+                <span className="text-[11px] font-black bg-brand-500 text-white border-2 border-black dark:border-white px-2 py-0.5 shadow-brutal-sm uppercase flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3" /> {metadata.acquirerName || 'QRIS Standar'}
+                </span>
               </div>
               <div className="flex items-center gap-3 text-xs text-neutral-600 dark:text-neutral-400 mt-1 font-semibold">
                 <span className="flex items-center gap-1">
-                  <MapPin className="w-3 h-3 text-dana-500" /> {metadata.merchantCity} ({metadata.postalCode})
+                  <MapPin className="w-3 h-3 text-brand-500" /> {metadata.merchantCity} ({metadata.postalCode})
                 </span>
                 <span>•</span>
                 <span>Mata Uang: {metadata.currency}</span>
@@ -86,13 +80,13 @@ export const PayloadResult: React.FC<PayloadResultProps> = ({ metadata, staticPa
                 onClick={handleCopyEnv}
                 className="btn-brutal bg-white dark:bg-neutral-900 text-black dark:text-white px-3 py-1.5 text-xs flex items-center gap-1.5 uppercase"
               >
-                {copiedEnv ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Terminal className="w-3.5 h-3.5 text-dana-500" />}
+                {copiedEnv ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Terminal className="w-3.5 h-3.5 text-brand-500" />}
                 <span>{copiedEnv ? 'Tersalin .env!' : 'Salin Format .env'}</span>
               </button>
 
               <button
                 onClick={handleCopyPayload}
-                className="btn-brutal bg-dana-500 text-white px-3.5 py-1.5 text-xs flex items-center gap-1.5 uppercase"
+                className="btn-brutal bg-brand-500 text-white px-3.5 py-1.5 text-xs flex items-center gap-1.5 uppercase"
               >
                 {copiedPayload ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>{copiedPayload ? 'Tersalin!' : 'Salin String Payload'}</span>
@@ -105,7 +99,7 @@ export const PayloadResult: React.FC<PayloadResultProps> = ({ metadata, staticPa
           </div>
 
           <div className="p-3 bg-neutral-100 dark:bg-neutral-900 border-2 border-black dark:border-white text-xs text-neutral-700 dark:text-neutral-300 flex items-start gap-2 shadow-brutal-sm dark:shadow-brutal-sm-dark">
-            <Terminal className="w-4 h-4 text-dana-500 mt-0.5 flex-shrink-0" />
+            <Terminal className="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0" />
             <div>
               <p className="text-black dark:text-white font-black uppercase text-[11px] mb-0.5">Penggunaan Payload:</p>
               <p className="font-medium text-[11px]">
@@ -123,7 +117,7 @@ export const PayloadResult: React.FC<PayloadResultProps> = ({ metadata, staticPa
           className="w-full flex items-center justify-between text-left text-xs font-black uppercase text-black dark:text-white"
         >
           <div className="flex items-center gap-2">
-            <Layers className="w-4 h-4 text-dana-500" />
+            <Layers className="w-4 h-4 text-brand-500" />
             <span>Struktur Data EMVCo QRIS (Rincian Tag-Length-Value)</span>
             <span className="text-[10px] bg-black text-white dark:bg-white dark:text-black px-2 py-0.5 font-mono">
               {tags.length} Tag
@@ -147,7 +141,7 @@ export const PayloadResult: React.FC<PayloadResultProps> = ({ metadata, staticPa
                 {tags.map((tag) => (
                   <React.Fragment key={tag.id}>
                     <tr className="hover:bg-neutral-100 dark:hover:bg-neutral-800/80">
-                      <td className="py-2 px-3 text-dana-600 dark:text-dana-400 font-black">{tag.id}</td>
+                      <td className="py-2 px-3 text-brand-600 dark:text-brand-400 font-black">{tag.id}</td>
                       <td className="py-2 px-3 text-black dark:text-white font-sans font-bold">{tag.name}</td>
                       <td className="py-2 px-3 text-neutral-600 dark:text-neutral-400">{tag.length}</td>
                       <td className="py-2 px-3 text-black dark:text-white break-all">{tag.value}</td>

@@ -20,25 +20,24 @@ export const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose }) => {
         </button>
 
         <h2 className="text-lg font-black text-black dark:text-white uppercase flex items-center gap-2 mb-1 tracking-tight">
-          <HelpCircle className="w-5 h-5 text-dana-500" />
+          <HelpCircle className="w-5 h-5 text-brand-500" />
           Panduan Penggunaan
         </h2>
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-6 font-medium">
-          Cara mengekstrak barcode QRIS DANA Bisnis dan mengonversinya menjadi payload statis EMVCo.
+          Cara mengekstrak barcode QRIS dan mengonversinya menjadi payload statis EMVCo.
         </p>
 
         <div className="space-y-4 text-xs text-black dark:text-white font-medium">
           {/* Section 1 */}
           <div className="bg-neutral-50 dark:bg-neutral-900 p-4 border-2 border-black dark:border-white shadow-brutal-sm dark:shadow-brutal-sm-dark space-y-2">
             <h3 className="font-black text-sm uppercase flex items-center gap-2">
-              <span className="w-5 h-5 bg-dana-500 text-white flex items-center justify-center text-[11px] font-black border border-black dark:border-white">1</span>
-              Ambil Barcode QRIS dari DANA
+              <span className="w-5 h-5 bg-brand-500 text-white flex items-center justify-center text-[11px] font-black border border-black dark:border-white">1</span>
+              Ambil Barcode QRIS Merchant
             </h3>
             <ul className="list-disc pl-5 space-y-1.5 text-neutral-700 dark:text-neutral-300">
-              <li>Buka aplikasi <strong>DANA</strong> pada smartphone Anda.</li>
-              <li>Masuk ke menu <strong>DANA Bisnis</strong> atau <strong>Profil Toko</strong>.</li>
-              <li>Pilih opsi <strong>QR Bisnis</strong> / <strong>Tampilkan QR</strong>.</li>
-              <li>Unduh gambar barcode atau lakukan tangkapan layar (screenshot).</li>
+              <li>Buka aplikasi perbankan atau e-wallet (BCA, Mandiri, BRI, BNI, DANA, GoPay, ShopeePay, dll).</li>
+              <li>Masuk ke menu <strong>QRIS Bisnis</strong>, <strong>Merchant</strong>, atau <strong>Tampilkan QR Toko</strong>.</li>
+              <li>Unduh gambar barcode QRIS atau lakukan tangkapan layar (screenshot).</li>
               <li>Unggah file tersebut ke web ini, atau cukup tekan <kbd className="bg-black text-white dark:bg-white dark:text-black px-1.5 py-0.5 font-bold font-mono text-[10px]">Ctrl + V</kbd>.</li>
             </ul>
           </div>
@@ -61,7 +60,7 @@ export const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose }) => {
               Uji Coba dengan Simulator Dinamis
             </h3>
             <p className="text-neutral-700 dark:text-neutral-300">
-              Gunakan fitur simulator pada bagian bawah hasil ekstraksi. Masukkan nominal uji coba dan scan QR Code yang muncul di layar menggunakan aplikasi DANA untuk memastikan nama merchant dan nominal terisi secara otomatis.
+              Gunakan fitur simulator pada bagian bawah hasil ekstraksi. Masukkan nominal uji coba dan scan QR Code yang muncul di layar menggunakan aplikasi pembayaran apa saja untuk memastikan nama merchant dan nominal terisi secara otomatis.
             </p>
           </div>
         </div>
